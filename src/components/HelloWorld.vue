@@ -116,19 +116,22 @@ function configuraFlash() {
           .getUserMedia({
             video: {
               deviceId: camera.deviceId,
-              facingMode: ['user', 'environment'],
+              facingMode: [/* 'user',  */ 'environment'],
               /* height: { ideal: 1080 },
               width: { ideal: 1920 }, */
             },
           })
           .then((stream) => {
+            log('stream');
             track.value = stream.getVideoTracks()[0];
+            log('track');
 
             //Create image capture object and get camera capabilities
             const imageCapture = new ImageCapture(track.value);
             imageCapture
               .getPhotoCapabilities()
               .then((capabilities) => {
+                log('capabilities');
                 torchSupported.value =
                   !!capabilities.torch ||
                   ('fillLightMode' in capabilities &&
