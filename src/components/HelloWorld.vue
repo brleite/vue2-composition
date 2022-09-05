@@ -98,10 +98,12 @@ function configuraFlash() {
   const SUPPORTS_MEDIA_DEVICES = 'mediaDevices' in navigator;
 
   if (SUPPORTS_MEDIA_DEVICES) {
+    log('mediaDevices');
     //Get the environment camera (usually the second one)
     navigator.mediaDevices
       .enumerateDevices()
       .then((devices) => {
+        log('enumerateDevices');
         const cameras = devices.filter(
           (device) => device.kind === 'videoinput'
         );
